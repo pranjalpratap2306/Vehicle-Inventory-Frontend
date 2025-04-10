@@ -1,0 +1,67 @@
+/* Ensure the container is within constraints and responsive */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn:disabled {
+    background-color: #ccc;
+  }
+  
+  /* Media query for small screens */
+  @media (max-width: 600px) {
+    .container {
+      padding: 12px;
+    }
+  }
+  
+  /* Layout adjustment when the header is fixed */
+  body {
+    margin-top: 60px; /* Adjust according to the header height */
+  }
+  
+  .tablewrapper{
+    width: 95%; overflow-y: hidden; overflow-x: auto; 
+    background-color:#fff;  height: auto; padding: 5px;}
+  

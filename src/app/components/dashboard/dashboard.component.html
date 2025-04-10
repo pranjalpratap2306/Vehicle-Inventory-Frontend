@@ -1,0 +1,91 @@
+<div class="dashboard-container">
+
+</div>
+<div class="dashboard-container">
+    <div class="summary-cards">
+        <div class="total-stock-card card">
+            <h2>Total Cars Available</h2>
+            <p>{{ getTotalCarsAvailable() }}</p>
+        </div>
+    
+        <div class="slider">
+            <div class="summary-card card" *ngFor="let city of cities">
+                <h2 style="text-align: left;">{{ city }}</h2>
+                <p style="text-align: left;"><b>{{ getCarsAvailableInCity(city) }}</b></p> 
+                <p style="text-align: left;">Vehicles in stock</p>
+            </div>
+        </div>
+    </div>
+    <header class="dashboard-header">
+        <h1>Stock Dashboard</h1>
+        <div class="header-actions">
+            <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" class="search-input" />
+            <button class="button add-vehicle" (click)="openAddVehiclePopup()">Add Vehicle</button>
+        </div>
+    </header>
+
+    <div class="filter-section">
+        <select [(ngModel)]="selectedCity" (change)="selectedModel=''">
+            <!-- <option value="" disabled selected>Select City</option> -->
+            <option value="" disabled selected>Select City</option>
+            <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+        </select>
+
+        <select [(ngModel)]="selectedModel" [disabled]="!selectedCity">
+            <option value="" disabled selected>Select Model</option>
+            <option *ngFor="let model of getCarModels(selectedCity)" [value]="model">{{ model }}</option>
+        </select>
+    </div>
+
+    <div class="stock-list">
+        <div class="stock-item" *ngFor="let stock of filteredStocks()" class="card-container">
+            <div class="card">
+                <h2>{{ stock.name }}</h2>
+                <p>Location: {{ stock.location }}</p>
+                <p>Available: {{ stock.available }}</p>
+                <!-- <button class="button edit" (click)="openEditVehiclePopup(stock)">Edit</button> -->
+                <button class="button edit" (click)="openAddVehiclePopup()">Edit</button>
+
+                <!-- <button class="button edit">Edit</button> -->
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" (click)="closePopup()">&times;</span>
+            <h2>Add Vehicle</h2>
+            <form (ngSubmit)="onSubmit()">
+                <label for="vehicleName">Vehicle Name:</label>
+                <input type="text" id="vehicleName" [(ngModel)]="newVehicle.name" name="name" required>
+
+                <label for="vehicleLocation">Location:</label>
+                <input type="text" id="vehicleLocation" [(ngModel)]="newVehicle.location" name="location" required>
+
+                <label for="vehicleAvailable">Availability:</label>
+                <input type="number" id="vehicleAvailable" [(ngModel)]="newVehicle.available" name="available" required>
+
+                <button type="submit" class="button">Add Vehicle</button>
+            </form>
+        </div>
+    </div>
+
+    <div *ngIf="showEditPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" (click)="closeEditPopup()">&times;</span>
+            <h2>Edit Vehicle</h2>
+            <form (ngSubmit)="onUpdate()">
+                <label for="editVehicleName">Vehicle Name:</label>
+                <input type="text" id="editVehicleName" [(ngModel)]="editVehicle.name" name="name" required>
+
+                <label for="editVehicleLocation">Location:</label>
+                <input type="text" id="editVehicleLocation" [(ngModel)]="editVehicle.location" name="location" required>
+
+                <label for="editVehicleAvailable">Availability:</label>
+                <input type="number" id="editVehicleAvailable" [(ngModel)]="editVehicle.available" name="available" required>
+
+                <button type="submit" class="button">Update Vehicle</button>
+            </form>
+        </div>
+    </div>
+</div>

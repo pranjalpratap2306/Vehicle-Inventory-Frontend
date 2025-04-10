@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Header and Footer</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<body>
+    <header>
+        <div class="logo">Fleet Manager</div>
+        <nav>
+            <ul>
+                <li><a routerLink="/" class="active">Dashboard</a></li>
+                <li><a routerLink="/user-page">User Management</a></li>
+                <li><a routerLink="/login-page">Login</a></li>
+                <li class="right"><a routerLink="/service-page">Services</a></li>
+                <li class="right"><a routerLink="/contact-page">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+    
+    <!-- <header>
+        <div class="logo">Fleet Manager</div>
+        <nav>
+            <ul>
+                <li><a routerLink="/" [ngClass]="{'active': isActive('/')}">Dashboard</a></li>
+                <li><a routerLink="/user-page" [ngClass]="{'active': isActive('/user-page')}">User Management</a></li>
+                <li><a routerLink="/login-page" [ngClass]="{'active': isActive('/login-page')}">Login</a></li>
+                <li class="right"><a href="#services" [ngClass]="{'active': isActive('/services')}">Services</a></li>
+                <li class="right"><a routerLink="/contact" [ngClass]="{'active': isActive('/contact')}">Contact</a></li>
+              </ul>
+        </nav>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header> -->
+    
+    <router-outlet></router-outlet>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 My Website | All rights reserved</p>
+            <p>Contact: info-mywebsite.com | Phone: (123) 456-7890</p>
+        </div>
+    </footer>
+    <script>
+
+    // Wait until the page content is fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+    // Cache all links with the 'nav-link' class
+    const navLinks = document.querySelectorAll(".nav-link");
+    
+    // Function to handle the active class toggle
+    function setActiveLink(event) {
+        navLinks.forEach(link => link.classList.remove('active')); // Remove active from all links
+        event.target.classList.add('active');  // Add active to the clicked link
+    }
+    
+    // Add event listener to each navigation link
+    navLinks.forEach(link => {
+        link.addEventListener('click', setActiveLink);
+    });
+});
+
+
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
